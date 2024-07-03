@@ -1,1 +1,1 @@
-[![Viber](ссылка_на_файл)](ссылка_на_активную_страницу)
+[![Viber](https://github.com/bondpy202212/Files/blob/main/viber/Viber.png)](viber://chat?number=380637095484)
