@@ -8,4 +8,4 @@
 
 <a href="viber://chat?number=%2B380637095484">Viber</a>
 -->
-<a href="viber://chat?380637095484">Viber</a>
+<a href="viber://chat?+380637095484">Viber</a>
