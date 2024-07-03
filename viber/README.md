@@ -16,9 +16,9 @@
 
 <a title="Viber" href="viber://chat?number=380637095484"></a>
 
-<a title="Viber" href="viber://chat?number+380637095484"></a>
 
-
--->
 
 <a title="Viber" href="viber://chat?number380637095484"></a>
+-->
+
+<a title="Viber" href="viber://chat?number+380637095484"></a>
