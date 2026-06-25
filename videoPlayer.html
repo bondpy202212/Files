@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dynamic Video Player</title>
+</head>
+<body>
+  <h2>Video Player</h2>
+  <video id="videoPlayer" controls width="800">
+    <source id="videoSource" src="" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <script>
+    // Функція для отримання параметра video з URL
+    function getVideoUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('video');
+    }
+
+    // Встановлюємо src відео з параметра video
+    const videoUrl = getVideoUrl();
+    if (videoUrl) {
+      const videoSource = document.getElementById('videoSource');
+      videoSource.src = videoUrl;
+      const videoPlayer = document.getElementById('videoPlayer');
+      videoPlayer.load();
+    } else {
+      document.body.insertAdjacentHTML('beforeend', '<p>No video URL provided in the query parameter.</p>');
+    }
+  </script>
+</body>
+</html>
