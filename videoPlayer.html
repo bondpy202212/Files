@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Dynamic Video Player</title>
+  <title>Flexible Video Player</title>
 </head>
 <body>
   <h2>Video Player</h2>
   <video id="videoPlayer" controls width="800">
-    <source id="videoSource" src="" type="video/mp4" />
+    <!-- Джерела відео будуть додаватися динамічно -->
     Your browser does not support the video tag.
   </video>
 
@@ -18,15 +18,42 @@
       return params.get('video');
     }
 
-    // Встановлюємо src відео з параметра video
+    // Функція для визначення типу відео за розширенням
+    function getVideoType(url) {
+      const ext = url.split('.').pop().toLowerCase();
+      switch(ext) {
+        case 'mp4': return 'video/mp4';
+        case 'webm': return 'video/webm';
+        case 'ogg':
+        case 'ogv': return 'video/ogg';
+        default: return '';
+      }
+    }
+
     const videoUrl = getVideoUrl();
+    const videoPlayer = document.getElementById('videoPlayer');
+
     if (videoUrl) {
-      const videoSource = document.getElementById('videoSource');
-      videoSource.src = videoUrl;
-      const videoPlayer = document.getElementById('videoPlayer');
-      videoPlayer.load();
+      const type = getVideoType(videoUrl);
+      if (type) {
+        // Очищаємо попередні джерела
+        videoPlayer.innerHTML = '';
+        // Створюємо новий тег source
+        const source = document.createElement('source');
+        source.src = videoUrl;
+        source.type = type;
+        videoPlayer.appendChild(source);
+        videoPlayer.load();
+
+        // Додатково можна обробити помилки відтворення
+        videoPlayer.onerror = function() {
+          alert('Помилка відтворення відео. Можливо, формат не підтримується або файл недоступний.');
+        };
+      } else {
+        document.body.insertAdjacentHTML('beforeend', '<p>Непідтримуваний формат відео.</p>');
+      }
     } else {
-      document.body.insertAdjacentHTML('beforeend', '<p>No video URL provided in the query parameter.</p>');
+      document.body.insertAdjacentHTML('beforeend', '<p>Параметр video не вказаний у URL.</p>');
     }
   </script>
 </body>
